@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        /* Product Section */
+        #products {
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+        }
+
+        .product button {
+            margin-top: 10px;
+        }
+
+        /* Filter section */
+        #filter {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        #filter select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Horizontal Rule */
+        hr {
+            margin: 20px auto;
+            width: 80%;
+            border: 1px solid black;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body bgcolor="grey">
+    <header>
+        <h1 style="text-align: center;">Vishal Enterprises</h1>
+        <p style="text-align: center;">Email: Vishalinfo@gmail.com</p>
+        <p style="text-align: center;">Phone no.: 1230546789</p>
+
+        <hr>
+
+        <nav>
+            <ul>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#cart">Shopping Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="products">
+            <h2>Our Products</h2>
+
+            <!-- Filter Section -->
+            <div id="filter">
+                <label for="clothing-type">Select Clothing Type: </label>
+                <select id="clothing-type" onchange="filterClothing()">
+                    <option value="all">All</option>
+                    <option value="baby">Baby</option>
+                    <option value="adult">Adult</option>
+                </select>
+            </div>
+
+            <div class="product" data-type="adult">
+                <h3>T-Shirt</h3>
+                <p>Price: Rs.200</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product" data-type="adult">
+                <h3>Jeans</h3>
+                <p>Price: Rs.400</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product" data-type="baby">
+                <h3>Baby Dress</h3>
+                <p>Price: Rs.150</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product" data-type="baby">
+                <h3>Baby Shoes</h3>
+                <p>Price: Rs.100</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product" data-type="adult">
+                <h3>Dress</h3>
+                <p>Price: Rs.600</p>
+                <button>Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>Welcome to Vishal Enterprises, your number one source for all things clothing. We're dedicated to giving you the very best of apparel, with a focus on dependability, customer service, and uniqueness.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: support@vishalenterprises.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </section>
+
+        <section id="cart">
+            <h2>Your Shopping Cart</h2>
+            <p>No items in cart.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Vishal Enterprises. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function filterClothing() {
+            var selectedType = document.getElementById("clothing-type").value;
+            var products = document.querySelectorAll(".product");
+
+            products.forEach(function(product) {
+                var productType = product.getAttribute("data-type");
+
+                if (selectedType === "all" || productType === selectedType) {
+                    product.style.display = "inline-block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
