@@ -146,6 +146,281 @@
 
         <section id="about">
             <h2>About Us</h2>
+            <p>1.Project
+            import java.util.Scanner;
+
+class SmartCard
+{
+	int emp_idn;
+	public void MarkAttendance(Employee e)
+	{
+		emp_idn=e.getEmpId();
+		System.out.println("Employee "+emp_idn+" is marked present");
+	}
+
+	public int getEmpIdn(Employee e)
+	{
+		return e.empid;
+	}
+}
+
+class Employee
+{
+	int empid;
+	
+	Employee()
+	{
+		System.out.println("enter employeet id");
+		Scanner sc=new Scanner(System.in);
+		this.empid=sc.nextInt();
+	}
+
+	int getEmpId()
+	{
+		return empid;
+	}
+
+	public void Login(SmartCard sc)
+	{
+		int eid=sc.getEmpIdn(this);
+		System.out.println("Login Successful for employee "+eid);
+	}
+}
+
+public class AssociationDemo
+{
+	public static void main(String args[])
+	{
+		System.out.println("***ASSOCIATION BETWEEN EMPLOYEE AND SMARTCARD***");
+
+		Employee e=new Employee();
+		System.out.println("NEW EMPLOYEE IS CREATED");
+		SmartCard scd=new SmartCard();
+		scd.MarkAttendance(e);
+		e.Login(scd);
+	}
+}
+            
+            </p>
+            <p>2.Project
+            import java.util.*;
+class ProductItem
+{
+	int id;
+	private float price;
+	ProductItem(int id,float price)
+	{
+		this.id=id;
+		this.price=price;
+	}
+	
+	public String toString()
+	{
+		return"ID:"+id+"PRICE:"+price;
+	}
+
+	float getPrice()
+	{
+		return price;
+	}
+}
+
+class ShoppingCart
+{
+	int custid;
+	Vector itemsv;
+
+	ShoppingCart(int custid)
+	{
+		this.custid=custid;
+		itemsv=new Vector();
+	}
+
+	public void addItem(ProductItem pit)
+	{
+		itemsv.addElement(pit);
+	}
+
+	
+	public void removeItem(ProductItem pit)	{
+		itemsv.remove(pit);
+	}
+
+	public void doPayment()
+	{
+		float amt=0.0f;
+		for(int i=0;i<itemsv.size();i++)
+		{
+			amt+=((ProductItem)itemsv.get(i)).getPrice();
+		}
+		System.out.println("Total Price:"+amt);
+	}
+}
+
+public class ShopDemo
+{
+	public static void main(String args[])
+	{
+		int count=0;
+		ShoppingCart sc=new ShoppingCart(1);
+		ProductItem it1=new ProductItem(count++,200);
+		sc.addItem(it1);
+		ProductItem it2=new ProductItem(++count,300);
+		sc.addItem(it2);
+		ProductItem it3=new ProductItem(++count,1300);
+		sc.addItem(it3);
+		ProductItem it4=new ProductItem(++count,1000);
+		sc.addItem(it4);
+		sc.removeItem(it3);
+		System.out.println();
+		sc.doPayment();
+		System.out.println();
+	}
+}
+            
+            </p>
+            <p>3.Project
+            import java.util.*;
+
+class Book
+{
+	int id;
+	String name;
+	Scanner sc;
+	Page[] pages;
+	
+	class Page
+	{
+		int[] lines;
+		Page(int numlines)
+		{
+			lines=new int[numlines];
+		}
+		
+		void setLines()
+		{
+			for (int i=0;i<lines.length;i++)
+			{
+				System.out.println("enter the num of words for lines"+(i+1));
+				lines[i]=sc.nextInt();
+			}
+		}
+		
+		int getLines()
+		{
+			return lines.length;
+		}
+	}
+
+	Book(int id,String name,int numpages)
+	{
+		this.id=id;
+		this.name=name;
+		sc=new Scanner(System.in);
+		pages=new Page[numpages];
+	
+		for(int i=0;i<pages.length;i++)
+		{
+			System.out.println("Enter the num of lines for pages"+(i+1));
+			int nlines=sc.nextInt();
+			pages[i]=new Page(nlines);
+			pages[i].setLines();
+		} 
+	}
+
+	public int getNumofWords()
+	{
+		int numofwords=0;
+
+		for(int i=0;i<pages.length;i++)
+		
+			for(int j=0;j<pages[i].getLines();j++)
+			
+				numofwords+=pages[i].lines[j];
+			
+			return numofwords;
+	}
+
+}
+
+public class BookStatistics
+{
+	public static void main(String args[])
+	{
+		Book b=new Book(1,"OOPM Book",3);
+		int nowords=b.getNumofWords();
+		System.out.println("Total words="+nowords);
+	}
+}
+
+		
+		
+            
+            </p>
+             <p>4.Project
+            import java.util.*;
+public class ATMmachine
+{
+	public static void main(String atgs[])
+	{
+		int balance=20000,withdraw,deposite,num;
+		Scanner sc=new Scanner(System.in);
+		
+		while(true)
+		{
+			System.out.println("Welcome to ATM machine");
+			System.out.println("1.Withdraw");
+			System.out.println("2.Deposite");
+			System.out.println("3.Check Balance");
+			System.out.println("4.Exit");
+
+			num=sc.nextInt();
+	
+			switch(num)
+			{
+				case 1:
+
+				System.out.println("Enter the amount to be withdraw");
+				withdraw=sc.nextInt();
+	
+				if(balance>=withdraw)
+				{
+					balance=balance-withdraw;
+					System.out.println("Balance amount is:"+balance);
+					System.out.println("Please collect your money");
+				}
+				else
+				{ 
+					System.out.println("you don't have enough money for withdraw");
+				}
+				System.out.println("");
+				break;
+
+				case 2:
+				System.out.println("enter Amount to deposite");
+				deposite=sc.nextInt();
+				balance=balance+deposite;
+				System.out.println("Balance Amount is:"+balance);
+				System.out.println("Money has been deposited successfully");
+				System.out.println("");
+				break;
+
+				case 3:
+				System.out.println("Balance of your account is:"+balance);
+				System.out.println("");
+				break;
+		
+				case 4:
+				System.exit(0);
+				System.out.println("");
+			}
+		}
+	}
+}
+
+            
+            </p>
+            
             <p>Welcome to Vishal Enterprises, your number one source for all things clothing. We're dedicated to giving you the very best of apparel, with a focus on dependability, customer service, and uniqueness.</p>
         </section>
 
